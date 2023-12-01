@@ -46,7 +46,7 @@
     ?>
 	
 	<h3>Kupuję auto : </h3>
-  <form action="insert.php" method="post">
+  <form action="zakup.php" method="post">
     <p>Id Auta które chce kupić : <input type="number" name="id-kupna" required></p>
     <p><input type="submit" value="Zakup!"></p>
   </form>
