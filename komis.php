@@ -21,7 +21,7 @@
 
 
     <?php
-	    echo "<p>Cześć ".$_SESSION['nazwisko'].'! [ <a href="logout.php">Wyloguj się!</a> ]</p>';
+	    echo "<p>Cześć ".$_SESSION['nazwisko'].' '.$_SESSION['imie'].'! [ <a href="logout.php">Wyloguj się!</a> ]</p>';
         echo "<p>Dodaj auto na sprzedarz : <a href=dodajauto.php>Wystaw Auto!</a></p>";
         echo "<p>Kup Auto : <a href=kupauto.php>Kup teraz!</a></p>";
         echo "<p>Sadlo twojego konta wynosi : ".$_SESSION['sadlo']."</p>";

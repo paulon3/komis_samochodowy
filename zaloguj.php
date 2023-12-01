@@ -37,7 +37,9 @@
                 $wiersz = $rezultat->fetch_assoc();
 				$_SESSION['id'] = $wiersz['ID_user'];
                 $_SESSION['nazwisko'] = $wiersz['nazwisko'];
+				$_SESSION['imie'] = $wiersz['imie'];			
                 $_SESSION['sadlo'] = $wiersz['wartosc_transakcji'];
+				
 				
 				unset($_SESSION['blad']);
 				$rezultat->free_result();
