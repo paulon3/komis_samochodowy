@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2023 at 03:46 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Dec 02, 2023 at 05:44 PM
+-- Wersja serwera: 10.4.32-MariaDB
+-- Wersja PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auta`
+-- Struktura tabeli dla tabeli `auta`
 --
 
 CREATE TABLE `auta` (
@@ -33,22 +33,30 @@ CREATE TABLE `auta` (
   `model` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `cena` int(11) NOT NULL,
   `przebieg` int(11) NOT NULL,
-  `ID_klienta` int(11) NOT NULL
+  `klient_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `auta`
 --
 
-INSERT INTO `auta` (`ID_auta`, `marka`, `model`, `cena`, `przebieg`, `ID_klienta`) VALUES
-(1, 'Opel', 'Vectra', 7400, 330000, 4),
-(2, 'Opel', 'Astra', 6400, 330000, 4),
-(3, 'BMW', 'E36', 4200, 270000, 1);
+INSERT INTO `auta` (`ID_auta`, `marka`, `model`, `cena`, `przebieg`, `klient_id`) VALUES
+(2, 'Opel', 'Astra', 6400, 330000, 1),
+(3, 'BMW', 'E36', 4200, 270000, 6),
+(5, 'Opel', 'Astra', 23222, 123234, 8),
+(7, 'Fiat', 'Punto', 4500, 210000, 8),
+(9, 'VW', 'Golf 2', 6700, 233000, 1),
+(10, 'Jeep', '2', 120000, 80000, 8),
+(11, 'Audi', 'A4 B5', 23000, 330000, 9),
+(12, 'Audi', 'A6', 40000, 125000, 9),
+(13, 'Renault', 'Cilo', 8000, 320000, 10),
+(14, 'Łada', 'Niwa', 200000, 95000, 5),
+(15, 'Opel', 'Vrctra', 12300, 120000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uzytkowicy`
+-- Struktura tabeli dla tabeli `uzytkowicy`
 --
 
 CREATE TABLE `uzytkowicy` (
@@ -65,25 +73,27 @@ CREATE TABLE `uzytkowicy` (
 --
 
 INSERT INTO `uzytkowicy` (`ID_user`, `nazwisko`, `imie`, `log_in`, `haslo`, `wartosc_transakcji`) VALUES
-(1, 'adamiak', 'adam', 'admin', 'admin', 0),
-(3, 'Jankowski', 'Jan', 'janik', 'janik', 0),
+(1, 'adamiak', 'adam', 'admin', 'admin', 7400),
 (4, 'Jankowski', 'Jan', 'janik', 'janik', 0),
 (5, 'Kacz', 'Bronisław', 'user', '1234', 0),
-(6, 'Kotowicz', 'Janusz', 'user01', 'qwerty', 0),
-(7, 'Kubiszyn', 'Piotr', 'asdfgh', 'asdfgh', 0);
+(6, 'Kotowicz', 'Janusz', 'user01', 'qwerty', 4200),
+(8, 'Janiszyn', 'Jan', 'jano', 'jano', 137500),
+(9, 'Johnas', 'Derk', 'derk', 'derk', 100000),
+(10, 'Krawczyk', 'Jan', 'janek', 'janek', 13000);
 
 --
--- Indexes for dumped tables
+-- Indeksy dla zrzutów tabel
 --
 
 --
--- Indexes for table `auta`
+-- Indeksy dla tabeli `auta`
 --
 ALTER TABLE `auta`
-  ADD PRIMARY KEY (`ID_auta`);
+  ADD PRIMARY KEY (`ID_auta`),
+  ADD KEY `klient_id` (`klient_id`);
 
 --
--- Indexes for table `uzytkowicy`
+-- Indeksy dla tabeli `uzytkowicy`
 --
 ALTER TABLE `uzytkowicy`
   ADD PRIMARY KEY (`ID_user`);
@@ -96,13 +106,23 @@ ALTER TABLE `uzytkowicy`
 -- AUTO_INCREMENT for table `auta`
 --
 ALTER TABLE `auta`
-  MODIFY `ID_auta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_auta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `uzytkowicy`
 --
 ALTER TABLE `uzytkowicy`
-  MODIFY `ID_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `auta`
+--
+ALTER TABLE `auta`
+  ADD CONSTRAINT `auta_ibfk_1` FOREIGN KEY (`klient_id`) REFERENCES `uzytkowicy` (`ID_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
