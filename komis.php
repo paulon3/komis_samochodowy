@@ -34,7 +34,7 @@
 	    echo "<p>Cześć ".$_SESSION['nazwisko'].' '.$_SESSION['imie'].'! [ <a href="logout.php">Wyloguj się!</a> ]</p>';
         echo "<p>Dodaj auto na sprzedarz : <a href=dodajauto.php>Wystaw Auto!</a></p>";
         echo "<p>Kup Auto : <a href=kupauto.php>Kup teraz!</a></p>";
-        echo "<p>Sadlo twojego konta wynosi : ".$_SESSION['sadlo']."</p>";
+        echo "<p>Sadlo twojego konta wynosi : ".$_SESSION['sadlo'].",00 zł.</p>";
         echo "<p>Twoje auta na sprzedarz : <a href=mojeauta.php>Sprawdz!</a></p>";
 		echo "<p>Dodaj środki do swojego konta : <a href=dodawania.php>DOŁADUJ!</a></p>"
     ?>

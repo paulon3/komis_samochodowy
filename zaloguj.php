@@ -16,36 +16,44 @@
 	{
 		echo "Error: ".$polaczenie->connect_errno;
 	}
-	else
-	{
+	else {
 		$login = $_POST['login'];
 		$haslo = $_POST['haslo'];
+	
+		// Pobranie zahaszowanego hasła z bazy danych dla danego użytkownika.
+		$sql = "SELECT * FROM uzytkowicy WHERE log_in = ?";
+		$stmt = $polaczenie->prepare($sql);
+		$stmt->bind_param("s", $login);
+		$stmt->execute();
+		$result = $stmt->get_result();
+	
+		if ($result->num_rows > 0) {
+			$row = $result->fetch_assoc();
+			$zahaszowaneZBazy = $row['haslo'];
 		
-        $sql = "SELECT * FROM uzytkowicy WHERE log_in='$login' AND haslo='$haslo'";
-
-        if ($rezultat = @$polaczenie->query(
-		sprintf("SELECT * FROM uzytkowicy WHERE log_in='%s' AND haslo='%s'",
-		mysqli_real_escape_string($polaczenie,$login),
-		mysqli_real_escape_string($polaczenie,$haslo))))
-		{
-			$ilu_userow = $rezultat->num_rows;
-			if($ilu_userow>0)
-			{
-				$_SESSION['zalogowany'] = true;
-				
-
-                $wiersz = $rezultat->fetch_assoc();
-				$_SESSION['id'] = $wiersz['ID_user'];
-                $_SESSION['nazwisko'] = $wiersz['nazwisko'];
-				$_SESSION['imie'] = $wiersz['imie'];			
-                $_SESSION['sadlo'] = $wiersz['wartosc_transakcji'];
-				
-				
-				unset($_SESSION['blad']);
-				$rezultat->free_result();
-				header('Location: komis.php');
-				
-			} else {
+			// Porównanie hasła wprowadzonego przez użytkownika z zahaszowanym hasłem z bazy danych.
+			if (password_verify($haslo, $zahaszowaneZBazy)) {
+				$ilu_userow = $result->num_rows;
+				if ($ilu_userow > 0) {
+					$_SESSION['zalogowany'] = true;
+		
+					// Ponowne ustawienie wskaźnika wyników na początek
+					$result->data_seek(0);
+		
+					$wiersz = $result->fetch_assoc();
+					$_SESSION['id'] = $wiersz['ID_user'];
+					$_SESSION['nazwisko'] = $wiersz['nazwisko'];
+					$_SESSION['imie'] = $wiersz['imie'];
+					$_SESSION['sadlo'] = $wiersz['wartosc_transakcji'];
+		
+					unset($_SESSION['blad']);
+					$result->free_result();
+					header('Location: komis.php');
+					exit; // Dodaj exit, aby zakończyć wykonywanie skryptu po przekierowaniu.
+				}
+			}
+		
+			else {
 				
 				$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
 				header('Location: index.php');
