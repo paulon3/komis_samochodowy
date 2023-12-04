@@ -65,20 +65,21 @@ CREATE TABLE `uzytkowicy` (
   `log_in` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `haslo` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `wartosc_transakcji` int(11) NOT NULL
+  `uprawnienia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `uzytkowicy`
 --
 
-INSERT INTO `uzytkowicy` (`ID_user`, `nazwisko`, `imie`, `log_in`, `haslo`, `wartosc_transakcji`) VALUES
-(1, 'adamiak', 'adam', 'admin', '$2y$10$VZSg5WMQ6k5OIiljwNWV7e6IUCU3b0fVSyQ3YlpEWnct7JyVpWjJa', 14034),
-(4, 'Jankowski', 'Jan', 'janik', '$2y$10$WO.rzCTmlTiDFZYFAAszy..cO9/u2u2ZgBeEH.0jBuJUKlOZ/EAmi', 4150),
-(5, 'Kacz', 'Bronisław', 'user', '$2y$10$NBYy8OrMdXo29wv4dOebZ.emLb0RiQPJSwp6iKyxXbgFSPi.1PZny', 12000),
-(6, 'Kotowicz', 'Janusz', 'user01', '$2y$10$1fRctc.w.OrnY2VVLmWVde4Mz/kA50pCwQyN0BtfyMis.8pP5VSR2', 4200),
-(8, 'Janiszyn', 'Jan', 'jano', '$2y$10$uZtJR/18oQ4ci.BvOJvY9e9DjK6zPGQo5AhTY2Bf2GQQXO/zmo7KC', 137500),
-(9, 'Johnas', 'Derk', 'derk', '$2y$10$9xN/qkxQvPt7Tyoh6f.4zeN5NUGMZSTnDMRI01HiCdm/ANQcHFoH2', 123000),
-(10, 'Krawczyk', 'Jan', 'janek', '$2y$10$mwFtJgE9wTNXbu81z8XgNOdHGDIpm5QnBgvo9hL8wfqb6OXCvhyvS', 13000);
+INSERT INTO `uzytkowicy` (`ID_user`, `nazwisko`, `imie`, `log_in`, `haslo`, `wartosc_transakcji`, `uprawnienia`) VALUES
+(1, 'adamiak', 'adam', 'admin', '$2y$10$VZSg5WMQ6k5OIiljwNWV7e6IUCU3b0fVSyQ3YlpEWnct7JyVpWjJa', 14034,1),
+(4, 'Jankowski', 'Jan', 'janik', '$2y$10$WO.rzCTmlTiDFZYFAAszy..cO9/u2u2ZgBeEH.0jBuJUKlOZ/EAmi', 4150,0),
+(5, 'Kacz', 'Bronisław', 'user', '$2y$10$NBYy8OrMdXo29wv4dOebZ.emLb0RiQPJSwp6iKyxXbgFSPi.1PZny', 12000,0),
+(6, 'Kotowicz', 'Janusz', 'user01', '$2y$10$1fRctc.w.OrnY2VVLmWVde4Mz/kA50pCwQyN0BtfyMis.8pP5VSR2', 4200,0),
+(8, 'Janiszyn', 'Jan', 'jano', '$2y$10$uZtJR/18oQ4ci.BvOJvY9e9DjK6zPGQo5AhTY2Bf2GQQXO/zmo7KC', 137500,0),
+(9, 'Johnas', 'Derk', 'derk', '$2y$10$9xN/qkxQvPt7Tyoh6f.4zeN5NUGMZSTnDMRI01HiCdm/ANQcHFoH2', 123000,0),
+(10, 'Krawczyk', 'Jan', 'janek', '$2y$10$mwFtJgE9wTNXbu81z8XgNOdHGDIpm5QnBgvo9hL8wfqb6OXCvhyvS', 13000,0);
 
 --
 -- Indexes for dumped tables

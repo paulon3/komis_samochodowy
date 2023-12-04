@@ -45,6 +45,7 @@
 					$_SESSION['nazwisko'] = $wiersz['nazwisko'];
 					$_SESSION['imie'] = $wiersz['imie'];
 					$_SESSION['sadlo'] = $wiersz['wartosc_transakcji'];
+					$_SESSION['admin'] = $wiersz['uprawnienia'];
 		
 					unset($_SESSION['blad']);
 					$result->free_result();
