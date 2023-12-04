@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2023 at 05:44 PM
--- Wersja serwera: 10.4.32-MariaDB
--- Wersja PHP: 8.2.12
+-- Generation Time: Dec 04, 2023 at 09:39 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `auta`
+-- Table structure for table `auta`
 --
 
 CREATE TABLE `auta` (
@@ -41,22 +41,21 @@ CREATE TABLE `auta` (
 --
 
 INSERT INTO `auta` (`ID_auta`, `marka`, `model`, `cena`, `przebieg`, `klient_id`) VALUES
-(2, 'Opel', 'Astra', 6400, 330000, 1),
 (3, 'BMW', 'E36', 4200, 270000, 6),
 (5, 'Opel', 'Astra', 23222, 123234, 8),
 (7, 'Fiat', 'Punto', 4500, 210000, 8),
 (9, 'VW', 'Golf 2', 6700, 233000, 1),
 (10, 'Jeep', '2', 120000, 80000, 8),
-(11, 'Audi', 'A4 B5', 23000, 330000, 9),
 (12, 'Audi', 'A6', 40000, 125000, 9),
 (13, 'Renault', 'Cilo', 8000, 320000, 10),
 (14, 'Łada', 'Niwa', 200000, 95000, 5),
-(15, 'Opel', 'Vrctra', 12300, 120000, 1);
+(15, 'Opel', 'Vrctra', 12300, 120000, 1),
+(16, 'VW', 'Golf 2', 12000, 123000, 4);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `uzytkowicy`
+-- Table structure for table `uzytkowicy`
 --
 
 CREATE TABLE `uzytkowicy` (
@@ -73,27 +72,27 @@ CREATE TABLE `uzytkowicy` (
 --
 
 INSERT INTO `uzytkowicy` (`ID_user`, `nazwisko`, `imie`, `log_in`, `haslo`, `wartosc_transakcji`) VALUES
-(1, 'adamiak', 'adam', 'admin', 'admin', 7400),
-(4, 'Jankowski', 'Jan', 'janik', 'janik', 0),
-(5, 'Kacz', 'Bronisław', 'user', '1234', 0),
-(6, 'Kotowicz', 'Janusz', 'user01', 'qwerty', 4200),
-(8, 'Janiszyn', 'Jan', 'jano', 'jano', 137500),
-(9, 'Johnas', 'Derk', 'derk', 'derk', 100000),
-(10, 'Krawczyk', 'Jan', 'janek', 'janek', 13000);
+(1, 'adamiak', 'adam', 'admin', '$2y$10$VZSg5WMQ6k5OIiljwNWV7e6IUCU3b0fVSyQ3YlpEWnct7JyVpWjJa', 14034),
+(4, 'Jankowski', 'Jan', 'janik', '$2y$10$WO.rzCTmlTiDFZYFAAszy..cO9/u2u2ZgBeEH.0jBuJUKlOZ/EAmi', 4150),
+(5, 'Kacz', 'Bronisław', 'user', '$2y$10$NBYy8OrMdXo29wv4dOebZ.emLb0RiQPJSwp6iKyxXbgFSPi.1PZny', 12000),
+(6, 'Kotowicz', 'Janusz', 'user01', '$2y$10$1fRctc.w.OrnY2VVLmWVde4Mz/kA50pCwQyN0BtfyMis.8pP5VSR2', 4200),
+(8, 'Janiszyn', 'Jan', 'jano', '$2y$10$uZtJR/18oQ4ci.BvOJvY9e9DjK6zPGQo5AhTY2Bf2GQQXO/zmo7KC', 137500),
+(9, 'Johnas', 'Derk', 'derk', '$2y$10$9xN/qkxQvPt7Tyoh6f.4zeN5NUGMZSTnDMRI01HiCdm/ANQcHFoH2', 123000),
+(10, 'Krawczyk', 'Jan', 'janek', '$2y$10$mwFtJgE9wTNXbu81z8XgNOdHGDIpm5QnBgvo9hL8wfqb6OXCvhyvS', 13000);
 
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `auta`
+-- Indexes for table `auta`
 --
 ALTER TABLE `auta`
   ADD PRIMARY KEY (`ID_auta`),
   ADD KEY `klient_id` (`klient_id`);
 
 --
--- Indeksy dla tabeli `uzytkowicy`
+-- Indexes for table `uzytkowicy`
 --
 ALTER TABLE `uzytkowicy`
   ADD PRIMARY KEY (`ID_user`);
@@ -106,7 +105,7 @@ ALTER TABLE `uzytkowicy`
 -- AUTO_INCREMENT for table `auta`
 --
 ALTER TABLE `auta`
-  MODIFY `ID_auta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID_auta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `uzytkowicy`
