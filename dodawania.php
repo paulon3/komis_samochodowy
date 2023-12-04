@@ -2,14 +2,13 @@
 
 	session_start();
 	
-	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+	if (!isset($_SESSION['zalogowany']))
 	{
-		header('Location: komis.php');
+		header('Location: index.php');
 		exit();
 	}
-
+	
 ?>
-
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -21,7 +20,7 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/flaticon.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/font-awsome.min.css">
 	<link rel="stylesheet" href="css/linearicons.css">
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
@@ -29,22 +28,26 @@
 </head>
 
 <body>
-	<section style="margin=30px">
-	<h1>Zaloguj się do komisu samochodowego!<br /><br /></h1>
-	
-	<form action="zaloguj.php" method="post">
-	
-		<p>Login: <br /> <input type="text" name="login" /> <br /></p>
-		<p>Hasło: <br /> <input type="password" name="haslo" /> <br /><br /></p>
-		<input type="submit" value="Zaloguj się" />
-	
-	</form>
-	
-    <img></img>
-</section>
-<?php
-	if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
-?>
 
+
+    <?php
+		require_once "connect.php";
+		$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+
+	    $sql = "SELECT ID_auta, marka, model, cena, przebieg, klient_id FROM auta";
+		$result = $polaczenie->query($sql);
+?>
+	
+	<h3>DOŁADOWANIE : </h3>
+  <form action="doladowanie.php" method="post">
+    <p>KWOTA DOŁADOWANIA : <input type="number" name="doladowanie" required></p>
+    <p><input type="submit" value="DOŁADUJ!"></p>
+  </form>
+
+    
 </body>
 </html>
+
+<?php
+	echo '<p>  <a href="komis.php">STRONA GŁÓWNA</a> </p>';
+?>
